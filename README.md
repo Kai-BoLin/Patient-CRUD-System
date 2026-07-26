@@ -1,4 +1,4 @@
-# 臨床病患管理系統 (FHIR Patient CRUD System)
+# 患者管理系統 (FHIR Patient CRUD System)
 
 本專案為對接外部 HAPI FHIR 伺服器之臨床病人資料管理前端系統。具備完整的資料維護功能，並依循軟體開發模組化規範編寫。
 

@@ -1,0 +1,216 @@
+* {
+    margin: 0;         /* 把瀏覽器預設的元件外大格子（外距）歸零 */
+    padding: 0;        /* 把瀏覽器預設的元件內襯（內距）歸零 */
+    box-sizing: border-box; /* 讓元件的寬度包含邊框，排版時格子才不會被擠變形 */
+    
+    /* 設定字體：優先使用微軟正黑體，若沒有則用無襯線體，字體看起來才不會像新細明體那麼老舊 */
+    font-family: "Microsoft JhengHei", sans-serif; 
+}
+
+body {
+    background-color: #0b111e; /* 換上深藍黑色的背景，有 PACS 系統或科技後台的感覺 */
+    color: #e2e8f0;            /* 把預設的文字顏色從黑色改成接近白色的亮灰色 */
+    padding: 30px;             /* 讓整個網頁的內容，跟螢幕最邊緣保持 30 像素的舒適距離 */
+}
+
+.main-card {
+    /* 1. 給這張大卡片一個固定的最大寬度（剛好能完美容納你目前的輸入框和按鈕） */
+    max-width: 500px;
+    
+    /* 💡 核心大絕招：利用「外距自動平分（margin: auto）」 */
+    /* 上下留出 20 像素的呼吸空間，左右交給瀏覽器自動平分，這一大包就會瞬間垂直水平置中！ */
+    margin: 20px auto;
+    
+    /* 2. 【選填加分裝潢】可以幫這張卡片加上微透的深色背景與圓角，更有控制台的實體質感 */
+    background-color: #111827; 
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #1f2937;
+}
+
+h1 {
+    color: #38bdf8;       /* 換上科技藍色，這顏色在深色背景下非常顯眼 */
+    margin-bottom: 25px;  /* 讓主標題的「下方」空出 25 像素的距離，跟輸入框錯開 */
+    font-size: 24px;      /* 設定適中的字體大小 */
+    border-bottom: 2px solid #1e293b; /* 在標題下方加一條暗藍色的細分隔線，增加質感 */
+    padding-bottom: 10px; /* 讓標題文字跟下方那條細線保持 10 像素的呼吸空間 */
+    text-align: center;
+    margin-top: 10px;
+}
+
+input, select {
+    display: inline-block;
+    background-color: #1e293b; /* 換上深灰藍色的底色，讓它融入深色背景中 */
+    border: 1px solid #334155; /* 給它一個低調、不刺眼的暗灰色邊框 */
+    color: #ffffff;            /* 輸入框裡面的字體一律改成純白色 */
+    padding: 10px 12px;         /* 讓輸入框裡面有內襯空間，字體不會緊貼著邊框 */
+    border-radius: 6px;        /* 加上 6 像素的微微圓角，看起來更現代、不尖銳 */
+    width: 250px;              /* 固定所有的輸入框寬度為 250 像素，視覺上比較整齊 */
+    outline: none;             /* 點擊輸入框時，拔除瀏覽器內建預設的粗黑框 */
+    margin-right: 0; /* 先把所有輸入框預設的右邊距歸零 */
+    margin-top: 5px;
+
+}
+
+/* 🎯 1. 精準微調查詢輸入框 */
+#searchPatientId {
+    width: 165px;       
+    flex-shrink: 0;     /* 💡 補上這行：強迫輸入框不縮小，並與按鈕維持在同一行 */
+    margin-bottom: 0;   /* 💡 在這裡多補上這一行！把下外距清空，不讓它有機會把按鈕往下擠 */
+}
+
+/* 🎯 2. 精準固定查詢按鈕的寬度 */
+#searchButton {
+    width: 70px;        
+    flex-shrink: 0;     /* 💡 補上這行：強迫按鈕不准掉到下一行 */
+}
+
+label {
+    display: inline-block; /* 1. 讓原本不能設定寬度的行內文字，變成可以自訂寬度的區塊 */
+    width: 160px;          /* 2. 固定所有標籤的寬度為 160 像素 */
+    font-weight: bold;     /* 3. 讓標籤文字變成粗體，更有後台資訊的清晰感 */
+    color: #94a3b8;        /* 4. 把字體改成柔和的淡灰藍色，不會跟白色輸入框搶視覺焦點 */
+    text-align: justify;   
+    text-justify: inter-ideograph; /* 針對中文字體的優化 */
+    /* 💡 核心修正：強制文字必須在同一行，絕對不准折行到下一行 */
+    white-space: nowrap;
+}
+
+/* 7. 讓每一組「文字標籤 + 輸入框」形成一個獨立的橫向排隊列 */
+.form-group {
+    display: flex;       /* 1. 啟動彈性盒子，裡面的東西強制橫向並排 */
+    align-items: center; /* 2. 讓文字、輸入框、按鈕在高度上完美居中對齊，不歪斜 */
+    margin-bottom: 4px;  /* 3. 控制每一行與下一行之間的垂直呼吸距離 */
+    gap: 15px;
+}
+
+/* 8. 修正按鈕區的間距，讓它跟上方的輸入框錯開 */
+.button-group {
+    display: flex;          /* 啟用彈性佈局，這樣才能控制內部按鈕的排隊方向 */
+    justify-content: center;/* 強迫裡面的所有按鈕在水平方向上「完美居中對齊」 */
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* 9. 針對網頁中所有的按鈕 (button) 進行基礎美化 */
+button {
+    padding: 8px 16px;     /* 讓按鈕上下左右都有充裕的厚度，更好點擊 */
+    border: none;          /* 拔除瀏覽器預設的老舊黑邊框 */
+    border-radius: 6px;    /* 加上 6 像素的微微圓角，跟輸入框風格一致 */
+    font-weight: bold;     /* 文字加粗，讓功能更清晰 */
+    cursor: pointer;       /* 當滑鼠移到按鈕上時，自動變成「一隻手指」的點擊圖示 */
+    margin-right: 10px;    /* 讓按鈕與右邊的鄰居按鈕保持 10 像素的距離 */
+}
+
+/* 10. 同時針對「查詢按鈕」與「更新按鈕」上色 */
+#searchButton, #updateButton {
+    background-color: #0284c7; /* 科技深藍色底色 */
+    color: #ffffff;            /* 按鈕文字改成純白色 */
+}
+
+/* 當滑鼠「懸停 (hover)」在按鈕上方時發生的改變 */
+#searchButton:hover, #updateButton:hover {
+    background-color: #0369a1; /* 藍色稍微變深，給使用者明確的反饋 */
+}
+
+/* 11. 針對「新增患者資料」按鈕上色 */
+#newPatient {
+    background-color: #10b981; /* 亮眼的健康翠綠色底色 */
+    color: #ffffff;            /* 文字改成純白色 */
+}
+
+#newPatient:hover {
+    background-color: #047857; /* 滑鼠移過去時綠色稍微變深 */
+}
+
+/* 12. 針對彈出對話框 (Dialog) 本體進行現代化美化 */
+dialog {
+    background-color: #111827; /* 1. 換上更深邃的極客黑底色，跟主畫面完美呼應 */
+    border: 1px solid #374151; /* 2. 給一個精緻的暗灰色邊框 */
+    color: #ffffff;            /* 3. 彈窗內所有文字一律改成白色 */
+    padding: 30px;             /* 4. 四周留出 30 像素的舒適內襯空間 */
+    border-radius: 12px;       /* 5. 大圓角設計，非常有現代系統的精緻感 */
+    margin: auto;              /* 6. 強制讓這個視窗在螢幕正中央彈出 */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); /* 7. 加上深色陰影，做出立體浮空感 */
+}
+
+/* 13. 彈出視窗內的小標題 */
+dialog h3 {
+    color: #10b981;            /* 換上象徵建立的健康翠綠色 */
+    margin-bottom: 25px;       /* 跟下方的輸入框錯開距離 */
+    border-bottom: 1px solid #374151; /* 下方加一條細分線 */
+    padding-bottom: 10px;
+}
+
+/* 14. 彈窗內特定按鈕的上色 */
+#submitCreateButton {
+    background-color: #10b981; /* 確定建立按鈕：健康翠綠色 */
+    color: #ffffff;
+}
+#submitCreateButton:hover {
+    background-color: #047857;
+}
+
+#closeModalButton {
+    background-color: #4b5563; /* 取消建立按鈕：低調的冷灰色 */
+    color: #ffffff;
+}
+#closeModalButton:hover {
+    background-color: #374151;
+}
+
+/* 15. 【終極高質感特效】彈窗打開時，背後的網頁背景自動模糊 */
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.75); /* 背景變暗 75% */
+    backdrop-filter: blur(5px);            /* 💡 毛玻璃特效：背景自動模糊 5 像素，這在科技大廠介面超加分！ */
+}
+
+/* 🎯 1. 專屬微調彈出視窗內的文字標籤（label） */
+.dialog-group label {
+    /* 💡 核心大絕招：彈窗文字的最長字數跟主畫面不同，這裡我們鎖定 150px 最精準 */
+    width: 150px;          
+    text-align: left;
+    white-space: nowrap;
+    
+    /* 確保這組 label 裡面不要有我們之前在主畫面調亂的其餘分散對齊干擾 */
+    text-align-last: auto; 
+}
+
+/* 🎯 2. 微調彈出視窗內部的輸入框、下拉選單與日期選擇器 */
+.dialog-group input, 
+.dialog-group select {
+    /* 💡 確保寬度統一維持 250px，且拿掉所有調皮的下外距 */
+    width: 250px;
+    margin-bottom: 0;
+}
+
+/* 🎯 3. 給彈窗內的行，加上跟主畫面一樣的垂直居中保險 */
+.dialog-group {
+    display: flex;
+    align-items: center;
+    /* 💡 控制彈窗內，每一行與下一行之間的垂直距離為 12px */
+    margin-bottom: 12px; 
+}
+
+.dialog-button{
+    display: flex;
+    justify-content: center; /* 關鍵：讓裡面的按鈕在這一列裡靠中央對齊 */
+    gap: 15px;              /* 兩個按鈕之間的水平間距 */
+    width: 100%;            /* 確保區塊有撐滿寬度，置中才會精準 */
+    margin: 20px auto 0 auto;
+}
+
+#result {
+    background-color: #1e1e24; /* 深色背景，配合你原本的 UI 主題 */
+    color: #a9b7c6;            /* 柔和的淺灰色文字，不刺眼 */
+    font-family: 'Courier New', Courier, monospace; /* 關鍵：改成等寬字型，程式碼才會整齊 */
+    padding: 15px;             /* 內文留白，不要讓字貼著邊緣 */
+    border-radius: 8px;        /* 邊角微圓潤，看起來更有質感 */
+    border: 1px solid #2d2d34; /* 微調的暗色邊框 */
+    font-size: 14px;           /* 適中的文字大小 */
+    line-height: 1.5;          /* 舒適的行高 */
+    
+    /* 預防 JSON 欄位太長時爆開，自動產生捲軸 */
+    overflow-x: auto;          
+    white-space: pre-wrap;     /* 遇到太長的字串會自動換行 */
+}

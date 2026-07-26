@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>新增查詢更新患者資料</title>
+        <link rel="stylesheet" href="CSS/stylePatient.css">                               <!--引入負責「風格」功能的 css (style.css)-->
+    </head>
+    <body>
+        <h1>患者資料：</h1>
+        <div class="main-card">
+            <div class="form-group">
+                <label>患者病歷號：</label>                                         <!-- 顯示「患者病歷號：」的文字標籤 -->
+                <input id="searchPatientId" placeholder="請輸入病歷號">             <!-- 查詢輸入框（seach.js會來這裡抓 value） -->
+                <button id="searchButton">查詢</button>                            <!-- 查詢按鈕（點擊時會觸發 JS 的 handleClick 函式） -->
+            </div>
+            <hr>
+            <div class="form-group">
+                <label> 患者病歷號： </label>                                       <!-- 更新區的病歷號標籤 -->
+                <input id="updatePatientId" placeholder="請輸入病歷號">             <!-- 更新專用的病歷號輸入框（update.js會來這裡抓修改目標的 ID） -->
+            </div>
+            <div class="form-group">
+                <label> 姓氏： </label>                                             <!-- 姓名修改輸入框（對應 JS 裡面的 family 與 given 變數） -->
+                <input id="patientFamily" placeholder="ex:陳">
+            </div>
+            <div class="form-group">
+                <label> 名字： </label>
+                <input id="patientGiven" placeholder="小華">
+            </div>
+            <div class="form-group">
+                <label>生日：</label>                                               <!-- 生日修改輸入框（對應 JS 裡面的  變數） -->
+                <input type="date" id="patientBirthdate">
+            </div>
+            <div class="form-group">
+                <label> 聯絡方式-手機： </label>                                     <!-- 聯絡方式修改輸入框（對應 JS 裡面用 telecom.find 尋找並修改的欄位） -->
+                <input id="telecomPhone" placeholder="0900000000">
+            </div>
+            <div class="form-group">
+                <label> 聯絡方式-電子郵件： </label>
+                <input id="telecomEmail" placeholder="xxx@gmail.com">
+            </div>
+            <div class="button-group">
+                <button id="updateButton">更新患者資料</button>                      <!-- 更新按鈕（點擊時觸發 update.js 的 updateButton 監聽事件） -->
+                <button id="newPatient">新增患者資料</button>                        <!-- 呼叫彈出視窗的按鈕（點擊時執行 openButton.addEventListener，彈出下方 dialog） -->
+                <button id="deleteButton">刪除患者資料</button>                      <!-- 刪除按鈕-->
+            </div>
+            <div>結果顯示：</div> 
+            <pre id="result"></pre>                                                <!-- 用來呈現漂亮 JSON 字串的區塊（JS 的 JSON.stringify 會呈現在這裡） -->
+            <div id="modalContainer"></div>
+        </div>
+
+        <dialog id="createPatient">                                                 <!-- 原生 HTML5 彈出對話框（預設隱藏，由 JS 的 dialog.showModal() 控制開啟） -->
+            <h3>建立患者資料</h3>
+            <div class="form-group dialog-group">
+                <label>姓氏：</label>                                               <!-- 新增患者的姓名輸入框（ create.js 會來這裡撈資料打包成 FHIR 格式） -->
+                <input type="text" id="newFamily" placeholder="ex:陳">
+            </div>
+            <div class="form-group dialog-group">
+                <label>名字：</label>
+                <input type="text" id="newGiven" placeholder="ex:小華">
+            </div>
+            <div class="form-group dialog-group">
+            <label>性別：</label>                                                   <!-- 性別下拉選單 -->
+            <select id = newGender>                                                <!-- 下拉選單主體（ create.js 用 newGender.value 抓取選選擇性別，如 male/female） -->
+                <option value="">請選擇患者性別</option>
+                <option value="male">男性(Male)</option>
+                <option value="female">女性(Female)</option>
+                <option value="other">其他(Other)</option>
+                <option value="unknow">未知(Unknow)</option>
+            </select>
+            </div>
+            <div class="form-group dialog-group">
+                <label>生日：</label>                                              <!-- 生日選擇器 -->
+                <input type="date" id="newBirthdate" >                             <!-- 日期型態輸入框（會自動跳出小日曆供使用者點選） type : date 設定成小日曆-->
+            </div>
+            <div class="form-group dialog-group">
+                <label>聯絡方式-手機：</label>                                      <!-- 新增患者的聯絡輸入框（ create.js 會檢查有填寫才 push 進 telecom 陣列） -->
+                <input id="newPhone" placeholder="ex:0900000000">
+            </div>
+            <div class="form-group dialog-group">
+                <label>聯絡方式-電子信箱：</label>
+                <input id="newEmail" placeholder="ex:xxx@gmail.com">
+            </div>
+            <div class="button-group dialog-button">
+                <button id="submitCreateButton">確定建立</button>                   <!-- 彈窗內的確定建立按鈕（觸發向 FHIR 伺服器發送 POST 請求的邏輯） -->
+                <button id="closeModalButton">取消建立</button>                     <!-- 彈窗內的取消按鈕（觸發 dialog.close() 關閉視窗） -->
+            </div>
+        </dialog>
+
+        <script src="JS/patient/create.js"></script>                                    <!-- 引入負責「新增」功能的 JS (create.js) -->
+        <script src="JS/patient/search.js"></script>                                    <!-- 引入負責「查詢」功能的 JS（search.js） -->
+        <script src="JS/patient/update.js"></script>                                    <!-- 引入負責「更新」功能的 JS（update.js） -->
+        <script src="JS/patient/delete.js"></script>                                    <!-- 引入負責「刪除」功能的 JS（update.js） -->
+    </body>
+</html>

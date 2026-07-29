@@ -58,3 +58,33 @@ FHIR-PATIENT-CRUD
 | PUT | /Patient/{id} | Update patient |
 | DELETE | /Patient/{id} | Delete patient |
 
+## Screenshots
+
+### Patient Dashboard
+
+![Patient Dashboard](images/01-patient-dashboard.png)
+
+---
+
+### Create Patient
+
+![Create Patient](images/02-create-patient-form.png)
+
+---
+
+### Update Patient
+
+![Update Patient](images/05-update-patient-success.png)
+
+---
+
+### Delete Patient
+
+![Delete Patient](images/06-delete-patient-confirm.png)
+
+## Workflow
+
+1. Search patient by Patient ID
+2. Create a new patient
+3. Update patient information
+4. Delete patient resource

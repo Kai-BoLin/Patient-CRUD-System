@@ -1,37 +1,60 @@
-# FHIR Patient CRUD System
+# HL7 FHIR Patient CRUD System
 
-A practice project for learning HL7 FHIR Patient Resource CRUD operations using Vanilla JavaScript and HAPI FHIR Server.
+A web application for performing CRUD operations on HL7 FHIR Patient resources using Vanilla JavaScript and a HAPI FHIR Server.
+
+---
+
+## Project Motivation
+
+This project was built to understand the structure of the HL7 FHIR Patient resource and practice creating, retrieving, updating, and deleting healthcare data through RESTful APIs.
+
+It also helped me gain practical experience with JavaScript, API communication, and healthcare data standards.
+
+---
 
 ## Features
 
-- Create Patient Resource
-- Search Patient Resource
-- Update Patient Resource
-- Delete Patient Resource
+- Create Patient resources
+- Search Patient resources by ID
+- Update Patient information
+- Delete Patient resources
+- Communicate with a HAPI FHIR Server through RESTful APIs
+
+---
 
 ## Tech Stack
+
+### Frontend
 
 - HTML5
 - CSS3
 - Vanilla JavaScript (ES6)
+
+### API
+
+- Fetch API
 - RESTful API
+
+### Healthcare
+
+- HL7 FHIR R4
 - HAPI FHIR Server
-- Git / GitHub
+
+### Version Control
+
+- Git
+- GitHub
+
+---
 
 ## What I Learned
 
-- Understand the structure of FHIR Patient Resource
-- Practice RESTful API communication
-- Implement CRUD operations using JavaScript
-- Improve frontend modularization and code organization
+- Basic structure of the HL7 FHIR Patient resource
+- RESTful API communication
+- CRUD operations using JavaScript
+- Frontend modularization and code organization
 
-## Future Improvements
-
-- Form validation
-- Better UI/UX
-- Responsive design
-- Pagination for patient search
-
+---
 
 ## Project Structure
 
@@ -49,14 +72,41 @@ FHIR-PATIENT-CRUD
 └── README.md
 ```
 
+---
+
 ## API Endpoints
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /Patient/{id} | Search patient |
-| POST | /Patient | Create patient |
-| PUT | /Patient/{id} | Update patient |
-| DELETE | /Patient/{id} | Delete patient |
+|---|---|---|
+| GET | `/Patient/{id}` | Retrieve a Patient resource |
+| POST | `/Patient` | Create a Patient resource |
+| PUT | `/Patient/{id}` | Update a Patient resource |
+| DELETE | `/Patient/{id}` | Delete a Patient resource |
+
+---
+
+## Workflow
+
+```text
+Enter a Patient ID
+        │
+        ▼
+Retrieve Patient data
+        │
+        ▼
+Display Patient information
+        │
+        ▼
+Create / Update / Delete Patient data
+        │
+        ▼
+Send request to the HAPI FHIR Server
+        │
+        ▼
+Receive and display the response
+```
+
+---
 
 ## Screenshots
 
@@ -82,9 +132,12 @@ FHIR-PATIENT-CRUD
 
 ![Delete Patient](images/06-delete-patient-confirm.png)
 
-## Workflow
+---
 
-1. Search patient by Patient ID
-2. Create a new patient
-3. Update patient information
-4. Delete patient resource
+## Future Improvements
+
+- Add form validation
+- Improve UI and user experience
+- Improve responsive design
+- Add pagination for Patient search results
+- Improve error and success messages
